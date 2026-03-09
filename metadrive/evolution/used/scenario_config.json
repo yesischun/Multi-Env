@@ -1,0 +1,69 @@
+# ScenarioEnv PPO 训练配置文件
+# 
+# 使用方法:
+# 1. 修改下面的参数
+# 2. 在训练脚本中加载这个配置
+# 
+# 示例:
+#   import json
+#   with open('scenario_config.json', 'r') as f:
+#       config = json.load(f)
+
+{
+  "data": {
+    "source": "nuscenes",
+    "num_train_scenarios": 50,
+    "num_eval_scenarios": 10,
+    "start_train_index": 0,
+    "start_eval_index": 50
+  },
+  
+  "environment": {
+    "crash_vehicle_done": true,
+    "crash_object_done": false,
+    "reactive_traffic": true,
+    "log_level": 50
+  },
+  
+  "training": {
+    "total_timesteps": 100000,
+    "num_workers": 4,
+    "save_freq": 5000,
+    "eval_freq": 5000,
+    "n_eval_episodes": 3
+  },
+  
+  "ppo": {
+    "learning_rate": 0.0003,
+    "n_steps": 2048,
+    "batch_size": 64,
+    "n_epochs": 10,
+    "gamma": 0.99,
+    "gae_lambda": 0.95,
+    "clip_range": 0.2,
+    "ent_coef": 0.01,
+    "max_grad_norm": 0.5
+  },
+  
+  "model": {
+    "policy": "MlpPolicy",
+    "net_arch": [256, 256],
+    "activation_fn": "relu"
+  },
+  
+  "output": {
+    "save_dir": "./scenario_training",
+    "save_best_model": true,
+    "use_tensorboard": true
+  },
+  
+  "comments": {
+    "learning_rate": "3e-4 或 5e-4 较常用",
+    "n_steps": "每次数据收集的步数，越大越稳定但需要更多内存",
+    "batch_size": "小批处理大小，通常为 64 或 128",
+    "n_epochs": "每批数据的更新轮次，10-20 较常用",
+    "num_workers": "并行进程数，4-8 较常用，取决于 CPU 核心数",
+    "reactive_traffic": "设为 true 使交通对 ego 车反应，更真实但更难",
+    "clip_range": "PPO 裁剪范围，0.2 是标准值"
+  }
+}
