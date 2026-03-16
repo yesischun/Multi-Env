@@ -65,7 +65,7 @@ class Config_Object:
                             'num_sgd_iter': 20,
                             'lr': 5e-5,
                             'num_workers': 4,
-                            'num_gpus': 0.8,
+                            'num_gpus': 1,
                             # 'num_cpus': 0.8,
                             'gamma': 0.99,
                             'lambda': 0.95,

@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from scipy.stats import multivariate_normal
 """
 编码环境基因
-一对‘智能体-环境’被视为单一个体
+一对‘智能体-环境’被视为个体
 个体的【基因】主要表征为【智能体架构】和【驾驶环境】
 基因由以下部分组成：
 1. 交通流参数：使用二维交通流分布来生成初始驾驶环境和背景车驾驶行为
